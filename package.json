@@ -1,0 +1,19 @@
+{
+  "name": "cs-docs",
+  "version": "1.0.0",
+  "description": "cs-docs",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "docs:build": "vuepress build src",
+    "docs:clean-dev": "vuepress dev src --clean-cache",
+    "docs:dev": "vuepress dev src"
+  },
+  "devDependencies": {
+    "@vuepress/client": "2.0.0-beta.60",
+    "vue": "^3.2.45",
+    "vuepress": "2.0.0-beta.60",
+    "vuepress-plugin-reading-time2": "^2.0.0-beta.157",
+    "vuepress-theme-hope": "2.0.0-beta.156"
+  }
+}
