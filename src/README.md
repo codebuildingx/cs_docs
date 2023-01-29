@@ -14,10 +14,10 @@ actions:
     link: /zh/guide/
 
 features:
-  - title: Markdown 增强
+  - title: C++面经速记
     icon: markdown
-    details: 新增文字对齐、上下角标、脚注、标记、任务列表、数学公式、流程图、图表与幻灯片支持
-    link: https://theme-hope.vuejs.press/zh/guide/markdown/
+    details: 快速掌握C++语言面试高频知识点
+    link: https://codebuildingx.github.io/quick/cplusplus/Outline.html
 
   - title: 幻灯片页面
     icon: slides
