@@ -37,3 +37,26 @@ int (*p)[10]表示数组指针，强调是指针，只有一个变量，是指�
 int *p(int)是函数声明，函数名是p，参数是int类型的，返回值是int *类型的。
 
 int (*p)(int)是函数指针，强调是指针，该指针指向的函数具有int类型参数，并且返回值是int类型的。
+
+### new、operator new与placement new区别是什么?
+
+**new**：
+
+new是一个关键字，不能被重载。
+
+new 操作符的执行过程如下：
+1. 调用operator new分配内存 ；
+2. 调用构造函数生成类对象；
+3. 返回相应指针。
+
+**operator new**：
+
+operator new就像operator + 一样，是**可以重载**的。如果类中没有重载operator new，那么调用的就是**全局的::operator new**来完成堆的分配。同理，operator new[]、operator delete、operator delete[]也是可以重载的。
+
+**placement new**：
+
+**只是operator new重载的一个版本**。它并不分配内存，只是返回指向已经分配好的某段内存的一个指针。因此不能删除它，但需要调用对象的析构函数。
+
+如果你想在**已经分配的内存**中创建一个对象，使用new时行不通的。也就是说placement new允许你在一个已经分配好的内存中（栈或者堆中）构造一个新的对象。原型中void* p实际上就是指向一个已经分配好的内存缓冲区的的首地址。
+
+STL中常用placement new去指定内存地址创建对象。
