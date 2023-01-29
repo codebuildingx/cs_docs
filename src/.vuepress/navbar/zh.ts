@@ -15,12 +15,12 @@ export const zhNavbar = navbar([
       {
         text: "数据库知识点速记",
         icon: "note",
-        link: "DataBase/Outline.md"
+        link: "database/Outline.md"
       },
       {
         text: "计算机网络知识点速记",
         icon: "note",
-        link: "Net/Outline.md"
+        link: "network/Outline.md"
       },
       {
         text: "操作系统知识点速记",

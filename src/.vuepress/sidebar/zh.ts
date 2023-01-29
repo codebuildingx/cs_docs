@@ -9,7 +9,19 @@ export const zhSidebar = sidebar({
       children: "structure"
     },
     {
-      text: "OS",
+      icon: "discover",
+      text: "数据库",
+      prefix: "database/",
+      children: "structure"
+    },
+    {
+      icon: "discover",
+      text: "计算机网络",
+      prefix: "network/",
+      children: "structure"
+    },
+    {
+      text: "操作系统",
       icon: "note",
       prefix: "OS/",
       children: "structure"
