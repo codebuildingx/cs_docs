@@ -2,6 +2,15 @@
 
 ## 基础题目
 
+
+### Linux 进程和线程的区别？
+对于线程来讲，其地址空间 mm_struct、目录信息 fs_struct、打开文件列表 files_struct 都是和创建它的任务共享的。
+
+但是对于进程来讲，地址空间 mm_struct、目录信息 fs_struct、打开文件列表 files_struct 都要是独立拥有的，都需要去申请内存并初始化它们。
+
+在 Linux 内核中并没有对线程做特殊处理，还是由 task_struct 来管理。从内核的角度看，用户态的线程本质上还是一个进程。只不过和普通进程比，稍微"轻量"了那么一些。
+
+https://heapdump.cn/article/4683828
 ### 什么是惊群现象，怎么解决
 什么是惊群现象？
 
@@ -110,4 +119,9 @@ struct mm_struct                *active_mm;
 struct fs_struct                *fs;
 //打开的文件的信息
 struct files_struct             *files;
+```
+
+**命名空间**:
+```c
+struct nsproxy *nsproxy;
 ```
