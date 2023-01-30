@@ -27,6 +27,11 @@ export const zhNavbar = navbar([
         icon: "note",
         link: "OS/Outline.md"
       },
+      {
+        text: "设计模式知识点速记",
+        icon: "note",
+        link: "design_pattern/Outline.md"
+      },
     ],
   },
   {
@@ -55,5 +60,10 @@ export const zhNavbar = navbar([
         link: "OS/Outline.md"
       },
     ],
+  },
+  {
+    text: "每日一问",
+    icon: "creative",
+    link: "https://meiriyiwen.com/",
   },
 ]);
