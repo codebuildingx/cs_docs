@@ -32,6 +32,11 @@ export const zhNavbar = navbar([
         icon: "note",
         link: "design_pattern/Outline.md"
       },
+      {
+        text: "数据结构与算法知识点速记",
+        icon: "note",
+        link: "data_structure_algorithm//Outline.md"
+      },
     ],
   },
   {
