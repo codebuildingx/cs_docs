@@ -5,7 +5,7 @@ export const zhSidebar = sidebar({
     {
       icon: "discover",
       text: "C++",
-      prefix: "cplusplus/",
+      prefix: "cpp/",
       children: "structure"
     },
     {
@@ -24,6 +24,18 @@ export const zhSidebar = sidebar({
       text: "操作系统",
       icon: "note",
       prefix: "OS/",
+      children: "structure"
+    },
+    {
+      text: "设计模式",
+      icon: "note",
+      prefix: "design_pattern/",
+      children: "structure"
+    },
+    {
+      text: "数据结构与算法",
+      icon: "note",
+      prefix: "data_structure_algorithm/",
       children: "structure"
     },
   ],
