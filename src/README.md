@@ -17,7 +17,7 @@ features:
   - title: C++面经速记
     icon: markdown
     details: 快速掌握C++语言面试高频知识点
-    link: https://codebuildingx.github.io/quick/cplusplus/Outline.html
+    link: https://codebuildingx.github.io/quick/cpp/Outline.html
 
   - title: 计算机网络
     icon: slides

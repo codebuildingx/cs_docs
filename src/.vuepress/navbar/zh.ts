@@ -42,7 +42,7 @@ export const zhNavbar = navbar([
       {
         text: "C++知识点详解",
         icon: "note",
-        link: "cplusplus/Outline.md"
+        link: "cpp/Outline.md"
       },
       {
         text: "数据库知识点详解",
