@@ -38,8 +38,14 @@ features:
     icon: info
     details: 快速掌握设计模式高频知识点
     link: https://codebuildingx.github.io/quick/design_pattern/Outline.html
-  # - title: 文章信息
-  #   icon: info
+
+  - title: 数据结构与算法
+    icon: config
+    details: 快速掌握数据结构与算法高频知识点
+    link: https://codebuildingx.github.io/quick/data_structure_algorithm/Outline.html
+
+  # - title: 数据结构与算法
+  #   icon: palette
   #   details: 为你的文章添加作者、写作日期、预计阅读时间、字数统计等信息
   #   link: https://theme-hope.vuejs.press/zh/guide/feature/page-info.html
 
