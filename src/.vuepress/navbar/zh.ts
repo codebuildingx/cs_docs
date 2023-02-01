@@ -62,7 +62,7 @@ export const zhNavbar = navbar([
     ],
   },
   {
-    text: "每日一问",
+    text: "每日一文",
     icon: "creative",
     link: "https://meiriyiwen.com/",
   },

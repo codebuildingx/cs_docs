@@ -34,6 +34,10 @@ features:
     details: 快速掌握操作系统高频知识点
     link: https://codebuildingx.github.io/quick/OS/Outline.html
 
+  - title: 设计模式
+    icon: info
+    details: 快速掌握设计模式高频知识点
+    link: https://codebuildingx.github.io/quick/design_pattern/Outline.html
   # - title: 文章信息
   #   icon: info
   #   details: 为你的文章添加作者、写作日期、预计阅读时间、字数统计等信息
