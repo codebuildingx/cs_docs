@@ -26,7 +26,7 @@ C++内存分为5个区域（堆栈全常代)
 **代码区 （.text段）** ：
 存放代码（如函数），不允许修改（类似常量存储区），但可以执行（不同于常量存储区）
 
-### 区别以下指针类别
+### 以混淆的几种指针相关的写法
 ```cpp
 int *p[10]
 int (*p)[10]
@@ -41,13 +41,6 @@ int *p(int)是函数声明，函数名是p，参数是int类型的，返回值�
 
 int (*p)(int)是函数指针，强调是指针，该指针指向的函数具有int类型参数，并且返回值是int类型的。
 
-
-### 如何禁用拷贝构造
-- 如果你的编译器支持 C++11，直接使用 delete
-
-- 可以把拷贝构造函数和赋值操作符声明成private同时不提供实现。
-
-- 可以通过一个基类来封装第二步，因为默认生成的拷贝构造函数会自动调用基类的拷贝构造函数，如果基类的拷贝构造函数是private，那么它无法访问，也就无法正常生成拷贝构造函数。
 
 ### new、operator new与placement new区别是什么?
 
@@ -75,6 +68,11 @@ STL中常用placement new去指定内存地址创建对象。
 
 
 ## 类和对象篇
+
+### 构造函数是否可以是虚函数?
+
+虚函数的调用是通过虚函数表来查找的，而虚函数表由类的实例化对象的vptr指针指向，该指针存放在对象的内部空间中，需要调用构造函数完成初始化。如果构造函数是虚函数，那么调用构造函数就需要去找vptr，但此时vptr还没有初始化。构造函数将无法调用。
+
 ### 析构函数是否可以抛出异常？
 
 C++允许在析构函数中抛出异常， 但是并不推荐在析构函数中抛出异常。
@@ -86,6 +84,16 @@ C++允许在析构函数中抛出异常， 但是并不推荐在析构函数中�
 （2）对象离开作用域之前，抛出异常，此时会调用析构函数，析构函数再抛出异常，此时之前的异常就不能被捕获了，而且会造成程序crash。
 
 因此尽可能不让异常逃离析构函数, 可以用try catch吞掉异常。
+
+
+### 如何禁用拷贝构造函数
+- 如果你的编译器支持 C++11，直接使用 delete
+
+- 可以把拷贝构造函数和赋值操作符声明成private同时不提供实现。
+
+- 可以通过一个基类来封装第二步，因为默认生成的拷贝构造函数会自动调用基类的拷贝构造函数，如果基类的拷贝构造函数是private，那么它无法访问，也就无法正常生成拷贝构造函数。
+
+
 ### const成员方法中如果要修改成员变量的值，要怎么做？
 - 方法1：使用mutable关键字
 ```cpp
@@ -159,4 +167,97 @@ int main()
 - 将旧内存空间中的数据，按原有顺序移动到新的内存空间中;
 - 最后将旧的内存空间释放;
 
-扩容因子由编译器决定，VS的扩容因子为1.5，G++中，扩容因子为2。一般认为扩容因子1.5优于2.0，原因是以1.5作为扩容因子可以实现复用释放的内存空间。
+扩容因子由编译器决定，vs的扩容因子为**1.5**，gcc中，扩容因子为**2**。一般认为扩容因子1.5优于2.0，原因是以1.5作为扩容因子可以实现复用释放的内存空间。
+
+
+
+### push_back和emplace_back的区别
+emplace_back可以传递任意的用户传递进来的参数，**直接在容器的尾部**调用对应的构造函数构造对象，包括**无参构造函数**，**有参构造函数**，**复制构造函数**， **移动构造函数等**。
+```cpp
+template <class... Args>
+void emplace_back (Args&&... args);
+```
+
+push_back只能接受左值引用或者右值引用， 它也是**直接在容器的尾部**直接构造对象，但是只会调用到类的**复制构造函数**， **移动构造函数等**。
+
+**注意**：push_back目前已经不会通过先生成临时对象，再复制到容器尾这种低效的方式，它也是通过直接在容器内的尾部地址上直接创建对象。(网上很多文章关于这个点理解不太正确，容易误导人)
+
+可以通过下面的例子看出二者的区别。
+
+```cpp
+#include <iostream>
+#include <vector>
+class A
+{
+public:
+    A () 
+    { 
+        std::cout << "call A () \n"; 
+    }
+    A (int a, int b) 
+        : a_ (a), 
+        b_ (b)
+    { 
+        std::cout << "call A (int a, int b) \n"; 
+    }
+    A(const A& other)
+    {
+        a_ = other.a_;
+        b_ = other.b_;
+        std::cout << "I am being copy constructed.\n";
+    }
+    A(A&& other)    
+    {  
+        a_ = other.a_;
+        b_ = other.b_;
+        std::cout << "I am being moved.\n";  
+    } 
+
+private:
+  int a_;
+  int b_;
+};
+
+int main ()
+{
+    {
+        std::vector<A> vec;
+        vec.reserve(4);
+        A a(1,2);
+        std::cout << "call emplace_back:\n";
+        vec.emplace_back();
+        vec.emplace_back(1,2);
+        vec.emplace_back(a);
+        vec.emplace_back(std::move(a));
+        std::cout<<"----------------------\n";
+    }
+    {
+        std::vector<A> vec;
+        vec.reserve(4);
+        A a(1,2);
+        std::cout << "call push_back:\n";
+        // vec.push_back(); 错误
+        // vec.push_back(1,2);错误
+        vec.push_back(a);
+        vec.push_back(std::move(a));
+    }
+  return 0;
+}
+```
+
+执行结果:
+```
+call A (int a, int b) 
+call emplace_back:
+call A () 
+call A (int a, int b) 
+I am being copy constructed.
+I am being moved.
+----------------------
+call A (int a, int b) 
+call push_back:
+I am being copy constructed.
+I am being moved.
+```
+
+
