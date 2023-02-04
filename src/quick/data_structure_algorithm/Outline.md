@@ -11,3 +11,65 @@ https://blog.csdn.net/weixin_43937101/article/details/114880124?share_token=6124
 
 
 
+## 排序算法
+
+### 快速排序
+```cpp
+### 快速排序
+```cpp
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+
+void swap(int *a, int *b)
+{
+	int tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+void dump(int *arr, int size)
+{
+	int idx;
+
+	for (idx = 0; idx < size; idx++)
+		printf("%d,", arr[idx]);
+}
+
+void quick_sort(int *arr, int start, int end) {
+    int base = arr[start];
+    int i = start;
+    int j = end;
+    int res = 0;
+
+    if(i >= j) return;
+    while (i < j) {
+        while (i<j && arr[j]>=base) --j;
+        while (i<j && arr[i]<=base) ++i;
+        if (i < j) 
+        {        
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[start], &arr[j]);
+
+    quick_sort(arr, start, j-1);
+    quick_sort(arr, j+1, end);
+    return;
+}
+
+int main()
+{
+	int test[10] = {5, 8, 9, 23, 67, 1, 3, 7, 31, 56};
+    quick_sort(test,0,9);
+    dump(test, 10);
+	return 0;
+}
+```
+
+**时间复杂度**
+
+最好O(nlogn) 
+
+最坏O(n2)， 例如9，8，7，6，5，4，3，2，1  ->  1，2，3，4，5，6，7，8，9
