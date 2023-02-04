@@ -3,7 +3,7 @@ home: true
 icon: home
 title: Code Building
 heroImage: /logo.svg
-heroText: 程序员小x
+heroText: Code Building面试版
 tagline: 根据自己的情况选择适合自己的学习路线
 actions:
   - text: 使用指南 💡
