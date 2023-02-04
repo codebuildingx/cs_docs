@@ -42,6 +42,19 @@ int *p(int)是函数声明，函数名是p，参数是int类型的，返回值�
 int (*p)(int)是函数指针，强调是指针，该指针指向的函数具有int类型参数，并且返回值是int类型的。
 
 
+### C++中static关键字的作用
+**c/c++共有**
+1）：修饰**全局变量**时，表明一个全局变量只对定义在同一文件中的函数可见。
+
+2）：修饰**局部变量**时，该变量的值只会初始化一次，不会因为函数终止而丢失。但是只能在函数内部使用。  
+
+3）：修饰**函数**时，表明该函数只在同一文件中调用，不能被其他文件调用。
+
+**c++独有：**
+4）：修饰类的**数据成员**，表明对该类所有对象共享该数据。
+
+5）：用static修饰**类成员函数**。类成员函数可以直接通过类名+函数名调用，无须新建对象。一个静态成员函数只能访问传入的参数、类的静态数据成员和全局变量。因为static修饰的函数中不能使用this指针。
+
 ### new、operator new与placement new区别是什么?
 
 **new**：
@@ -59,12 +72,78 @@ operator new就像operator + 一样，是**可以重载**的。如果类中没�
 
 **placement new**：
 
-**只是operator new重载的一个版本**。它并不分配内存，只是返回指向已经分配好的某段内存的一个指针。因此不能使用delete关键字删除它，需要手动调用对象的析构函数。
+**只是operator new重载的一个版本**。它并不分配内存，只是返回指向已经分配好的某段内存的一个指针。因此不能使用delete关键字删除它，需要**手动调用对象的析构函数**。
 
 如果你想在**已经分配的内存**中创建一个对象，使用new时行不通的。也就是说placement new允许你在一个已经分配好的内存中（栈或者堆中）构造一个新的对象。原型中void* p实际上就是指向一个已经分配好的内存缓冲区的的首地址。
 
 STL中常用placement new去指定内存地址创建对象。
 
+
+
+## 在A函数里用指针申请好空间后，这块空间需要返回给B函数，然后B函数使用后不再使用这块内存，虽然我们可以手动释放，但往往可能忘记释放，请问用什么方式解决?
+
+可以使用智能指针解决。
+
+```cpp
+#include <iostream>
+#include <string>
+#include <memory>
+
+using namespace std;
+
+class Stu
+{
+public:
+    Stu(int age):
+        age_(age)
+    {
+
+    }
+    Stu(const Stu& another)
+    {
+        age_ = another.age_;
+        cout << "call copy constructor" << endl;
+    }
+    int get_age() const
+    {
+        return age_;
+    }
+private:
+    int age_;
+};
+
+Stu* create_A1(int age)
+{
+    Stu *stu = new Stu(age);
+    return stu;
+}
+
+void B1()
+{
+    Stu* stu_ptr = create_A1(10);
+    cout << "student age = " << stu_ptr->get_age() << endl;
+    delete stu_ptr;
+}
+
+shared_ptr<Stu> create_A2(int age)
+{
+    shared_ptr<Stu> stu_ptr = make_shared<Stu>(age);
+    return stu_ptr;
+}
+
+void B2()
+{
+    shared_ptr<Stu> stu_ptr = create_A2(10);
+    cout << "student age = " << stu_ptr->get_age() << endl;
+}
+
+
+int main()
+{
+    B1();
+    B2();
+}
+```
 
 
 ## 类和对象篇
