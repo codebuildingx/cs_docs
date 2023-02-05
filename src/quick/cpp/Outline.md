@@ -284,6 +284,11 @@ int main()
     cout << "a value = " << a.get_val() << endl;
 }
 ```
+
+### 虚函数的实现原理
+![虚函数](https://raw.githubusercontent.com/zgjsxx/static-img-repo/main/website/quick/cpp/virtual_func.drawio.png)
+
+
 ## STL
 
 ### vector的扩容机制是怎样的？
@@ -445,4 +450,4 @@ n大于当前容器的capacity时，会改变容器的capacity。这个过程只
 
 
 ### deque容器的原理
-![循环引用](https://raw.githubusercontent.com/zgjsxx/static-img-repo/main/website/quick/cpp/deque.png)
+![deque](https://raw.githubusercontent.com/zgjsxx/static-img-repo/main/website/quick/cpp/deque.png)
