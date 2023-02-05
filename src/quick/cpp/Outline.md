@@ -442,3 +442,7 @@ reserve(n)
 n大于当前容器的capacity时，会改变容器的capacity。这个过程只是分配空间， 不负责构建内容。
 
 当n小于或者等于当前容量时，reserve什么也不做。
+
+
+### deque容器的原理
+
