@@ -445,4 +445,4 @@ n大于当前容器的capacity时，会改变容器的capacity。这个过程只
 
 
 ### deque容器的原理
-
+![循环引用](https://raw.githubusercontent.com/zgjsxx/static-img-repo/main/website/quick/cpp/deque.png)
