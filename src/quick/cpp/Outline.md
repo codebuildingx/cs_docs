@@ -288,6 +288,11 @@ int main()
 ### 虚函数的实现原理
 ![虚函数](https://raw.githubusercontent.com/zgjsxx/static-img-repo/main/website/quick/cpp/virtual_func.drawio.png)
 
+其中：
+
+**B的虚函数表**中存放着```B::foo```和```B::bar```两个函数指针。
+
+**D的虚函数表**中存放的既有继承自B的虚函数```B::foo```，又有重写（override）了基类虚函数```B::bar```的```D::bar```，还有新增的虚函数```D::quz```。
 
 ## STL
 
