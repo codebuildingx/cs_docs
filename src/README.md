@@ -17,42 +17,42 @@ features:
   - title: C++面经速记
     icon: markdown
     details: 快速掌握C++语言面试高频知识点
-    link: https://codebuildingx.github.io/quick/cpp/Outline.html
+    link: /quick/cpp/Outline.html
 
   - title: 计算机网络
     icon: slides
     details: 快速掌握计算机网络面试高频知识点
-    link: https://codebuildingx.github.io/quick/network/Outline.html
+    link: /quick/network/Outline.html
 
   - title: 数据库
     icon: layout
     details: 快速掌握数据库高频知识点
-    link: https://codebuildingx.github.io/quick/database/Outline.html
+    link: /quick/database/Outline.html
 
   - title: 操作系统
     icon: comment
     details: 快速掌握操作系统高频知识点
-    link: https://codebuildingx.github.io/quick/OS/Outline.html
+    link: /quick/OS/Outline.html
 
   - title: 设计模式
     icon: info
     details: 快速掌握设计模式高频知识点
-    link: https://codebuildingx.github.io/quick/design_pattern/Outline.html
+    link: /quick/design_pattern/Outline.html
 
   - title: 数据结构与算法
     icon: config
     details: 快速掌握数据结构与算法高频知识点
-    link: https://codebuildingx.github.io/quick/data_structure_algorithm/Outline.html
+    link: /quick/data_structure_algorithm/Outline.html
 
-  # - title: 数据结构与算法
-  #   icon: palette
-  #   details: 为你的文章添加作者、写作日期、预计阅读时间、字数统计等信息
-  #   link: https://theme-hope.vuejs.press/zh/guide/feature/page-info.html
+  - title: Leetcode算法题
+    icon: palette
+    details: 快速掌握Leetcode算法题高频知识点
+    link: /quick/leetcode/Outline.html
 
-  # - title: 博客支持
-  #   icon: blog
-  #   details: 使用一些很棒的布局提供博客功能，通过文章的日期、标签和分类，自动生成文章、分类、标签与时间轴列表
-  #   link: https://theme-hope.vuejs.press/zh/guide/blog/intro.html
+  - title: 关于作者
+    icon: blog
+    details: 使用一些很棒的布局提供博客功能，通过文章的日期、标签和分类，自动生成文章、分类、标签与时间轴列表
+    link: https://theme-hope.vuejs.press/zh/guide/blog/intro.html
 
   # - title: 主题色切换
   #   icon: palette
