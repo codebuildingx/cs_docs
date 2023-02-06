@@ -39,3 +39,7 @@ contact列可以分为电话号码和地址两个列，因此不符合1NF
 
 ### 说一下B+树的实现原理
 https://javaxiaobear.gitee.io/interview/database/150MySQL.html#_2%E3%80%81innodb%E7%B4%A2%E5%BC%95%E4%B8%8Emyisam%E7%B4%A2%E5%BC%95%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88
+
+
+### inno_db索引可以存储多少数据
+https://www.modb.pro/db/114759
