@@ -12,6 +12,19 @@
 
 https://heapdump.cn/article/4683828
 
+### Linux中进程的状态
+|状态|含义|
+|-|-|
+|TASK_RUNNING|	可运行状态。未必正在使用CPU，也许是在等待调度|
+|TASK_INTERRUPTIBLE	|可中断的睡眠状态。正在等待某个条件满足|
+|TASK_UNINTERRUPTIBLE	|不可中断的睡眠状态。不会被信号中断|
+|__TASK_STOPPED	 |暂停状态。收到某种信号，运行被停止|
+|__TASK_TRACED	|被跟踪状态。进程停止，被另一个进程跟踪|
+|EXIT_ZOMBIE |	僵尸状态。进程已经退出，但尚未被父进程或者init进程收尸|
+|EXIT_DEAD	|真正的死亡状态|
+
+https://quant67.com/post/linux/taskstatus.html
+
 ### ps命令中STAT字段的含义
 |符号  | 状态 |
 |-|-|
