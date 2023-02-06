@@ -48,6 +48,10 @@ accept确实应该只能被一个进程调用成功，内核很清楚这一点�
 
 2.SO_REUSEPORT。
 
+
+### 现代操作系统的分段和分页
+https://www.cnblogs.com/xuanyuan/p/15266447.html
+
 ### epoll的工作原理
 epoll底层实现中有两个关键的数据结构，一个是eventpoll，另一个是epitem。
 
