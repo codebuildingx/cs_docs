@@ -328,8 +328,6 @@ int main()
 
 扩容因子由编译器决定，vs的扩容因子为**1.5**，gcc中，扩容因子为**2**。一般认为扩容因子1.5优于2.0，原因是以1.5作为扩容因子可以实现复用释放的内存空间。
 
-
-
 ### push_back和emplace_back的区别
 emplace_back可以传递任意的用户传递进来的参数，**直接在容器的尾部**调用对应的构造函数构造对象，包括**无参构造函数**，**有参构造函数**，**复制构造函数**， **移动构造函数等**。
 ```cpp
@@ -480,3 +478,14 @@ n大于当前容器的capacity时，会改变容器的capacity。这个过程只
 
 ### deque容器的原理
 ![deque](https://raw.githubusercontent.com/zgjsxx/static-img-repo/main/website/quick/cpp/deque.png)
+
+
+
+### STL迭代器的分类
+
+迭代器共分为五种，分别为: 
+- Input iterator
+- Output iterator
+- Forward iterator
+- Bidirectional iterator
+- Random access iterator。
