@@ -499,6 +499,27 @@ n大于当前容器的capacity时，会改变容器的capacity。这个过程只
 
 
 
+### 迭代器失效的问题
+
+**插入操作**：
+
+对于vector和string，如果容器内存被重新分配，iterators,pointers,references失效；如果没有重新分配，那么插入点之前的iterator有效，插入点之后的iterator失效；
+
+对于deque，如果插入点位于除front和back的其它位置，iterators,pointers,references失效；当我们插入元素到front和back时，deque的迭代器失效，但reference和pointers有效；
+
+对于list和forward_list，所有的iterator,pointer和refercnce有效。
+
+**删除操作**：
+
+对于vector和string，删除点之前的iterators,pointers,references有效；off-the-end迭代器总是失效的；
+
+对于deque，如果删除点位于除front和back的其它位置，iterators,pointers,references失效；当我们插入元素到front和back时，off-the-end失效，其他的iterators,pointers,references有效；
+
+对于list和forward_list，所有的iterator,pointer和refercnce有效。
+
+对于关联容器map来说，如果某一个元素已经被删除，那么其对应的迭代器就失效了，不应该再被使用，否则会导致程序无定义的行为。
+
+
 ### STL迭代器的分类
 
 迭代器共分为五种，分别为: 
