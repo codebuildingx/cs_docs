@@ -320,6 +320,16 @@ int main()
 
 ## STL
 
+### STL的六大组件是什么？分别有什么作用？
+STL提供了六大组件，彼此之间可以组合套用，这六大组件分别是:容器、算法、迭代器、仿函数、适配器（配接器）、空间配置器。
+
+- 容器：各种数据结构，如vector、list、deque、set、map等,用来存放数据，从实现角度来看，STL容器是一种class template。
+- 算法：各种常用的算法，如sort、find、copy、for_each。从实现的角度来看，STL算法是一种function tempalte.
+- 迭代器：扮演了容器与算法之间的胶合剂，共有五种类型，从实现角度来看，迭代器是一种将operator* , operator-> , operator++,operator–等指针相关操作予以重载的class template. 所有STL容器都附带有自己专属的迭代器，只有容器的设计者才知道如何遍历自己的元素。原生指针(native pointer)也是一种迭代器。
+- 仿函数：行为类似函数，可作为算法的某种策略。从实现角度来看，仿函数是一种重载了operator()的class 或者class template
+- 适配器：一种用来修饰容器或者仿函数或迭代器接口的东西。
+- 空间配置器：负责空间的配置与管理。从实现角度看，配置器是一个实现了动态空间配置、空间管理、空间释放的class tempalte.
+
 ### vector的扩容机制是怎样的？
 当vector的大小和容量相等（size==capacity）也就是满载时，如果再向其添加元素，那么vector就需要扩容。vector容器扩容的过程需要经历以下3步：
 - 完全弃用现有的内存空间，重新申请更大的内存空间;
@@ -417,13 +427,21 @@ I am being copy constructed.
 I am being moved.
 ```
 
+### 什么情况下用vector，什么情况下用list，什么情况下用deque
+
+vector可以随机存储元素（即可以通过公式直接计算出元素地址，而不需要挨个查找），但在非尾部插入删除数据时，效率很低，适合对象简单，对象数量变化不大，随机访问频繁。除非必要，我们尽可能选择使用vector而非deque，因为deque的迭代器比vector迭代器复杂很多。
+
+list不支持随机存储，适用于对象大，对象数量变化频繁，**插入和删除频繁**，比如写多读少的场景。
+
+需要从**首尾两端**进行插入或删除操作的时候需要选择deque。
+
 
 ### vector resize/reserve的区别
 **resize**:
 
 resize(n)
 
-如果n大于当前容器的capacity，size修改为n， capacity也变为n。 这个过程中除了会分配空间以外，也会完成对象的构建。
+如果n大于当前容器的capacity，size修改为n， capacity会相应增大，可能大于n。 这个过程中除了会分配空间以外，也会完成对象的构建。
 
 如果n小于当前容器的capacity，size修改为n， capacity不变。
 
